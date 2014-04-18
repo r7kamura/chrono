@@ -24,8 +24,9 @@ module Chrono
           carry_wday
         when !scheduled_in_this_hour?
           carry_hour
-        else
+        when !scheduled_in_this_minute?
           carry_minute
+        else
           break time
         end
       end
@@ -34,7 +35,7 @@ module Chrono
     private
 
     def time
-      @time ||= now
+      @time ||= now + 1.minute
     end
 
     def fields

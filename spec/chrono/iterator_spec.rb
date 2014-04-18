@@ -20,9 +20,14 @@ describe Chrono::Iterator do
       "2000-01-01 23:59:00", "2000-01-02 00:00:00", "* * * * *",
       "2000-01-31 23:59:00", "2000-02-01 00:00:00", "* * * * *",
       "2000-12-31 23:59:00", "2001-01-01 00:00:00", "* * * * *",
-    ].each_slice(3) do |x, y, z|
-      specify "#{x} => #{y} by #{z}" do
-        described_class.new(z, now: Time.parse(x)).next.should == Time.parse(y)
+      "2000-01-01 00:00:00", "2000-01-01 00:15:00", "*/15 * * * *",
+      "2000-01-01 00:01:00", "2000-01-01 00:15:00", "*/15 * * * *",
+      "2000-01-01 00:00:00", "2000-01-01 00:31:00", "*/31 * * * *",
+      "2000-01-01 00:31:00", "2000-01-01 01:00:00", "*/31 * * * *",
+    ].each_slice(3) do |from, to, source|
+      it "ticks #{from} to #{to} by #{source}" do
+        now = Time.parse(from)
+        described_class.new(source, now: now).next.should == Time.parse(to)
       end
     end
   end
