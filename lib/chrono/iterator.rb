@@ -6,15 +6,8 @@ module Chrono
       @source = source
     end
 
-    # TODO
     def next
-      Time.now
-    end
-
-    private
-
-    def expression
-      @expression ||= Expression.new(source)
+      NextTime.new(source).to_time
     end
   end
 end
