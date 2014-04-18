@@ -1,18 +1,6 @@
 require "spec_helper"
 
 describe Chrono::Iterator do
-  let(:iterator) do
-    described_class.new(source, now: now)
-  end
-
-  let(:source) do
-    "* * * * *"
-  end
-
-  let(:now) do
-    Time.local(2000, 1, 1)
-  end
-
   describe "#next" do
     [
       "2000-01-01 00:00:00", "2000-01-01 00:01:00", "* * * * *",
