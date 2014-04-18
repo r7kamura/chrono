@@ -38,10 +38,6 @@ module Chrono
       @time ||= now + 1.minute
     end
 
-    def fields
-      @fields ||= source.split(" ")
-    end
-
     def schedule
       @schedule ||= Schedule.new(source)
     end
@@ -72,10 +68,6 @@ module Chrono
 
     def carry_day
       self.time = time.tomorrow.at_beginning_of_day
-    end
-
-    def carry_wday
-      self.time = time.next_week.at_beginning_of_week
     end
 
     def carry_hour

@@ -17,10 +17,6 @@ module Chrono
 
       private
 
-      def range
-        raise NotImplementedError
-      end
-
       def interpolated
         source.gsub("*", "#{range.first}-#{range.last}")
       end
