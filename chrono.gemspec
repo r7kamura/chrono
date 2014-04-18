@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = Chrono::VERSION
   spec.authors       = ["Ryo Nakamura"]
   spec.email         = ["r7kamura@gmail.com"]
-  spec.summary       = "A chain of logics about chronology."
+  spec.summary       = "Provides a chain of logics about chronology."
   spec.homepage      = "https://github.com/r7kamura/chrono"
   spec.license       = "MIT"
 
