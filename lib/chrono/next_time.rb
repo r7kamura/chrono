@@ -21,7 +21,7 @@ module Chrono
         when !scheduled_in_this_day?
           carry_day
         when !scheduled_in_this_wday?
-          carry_wday
+          carry_day
         when !scheduled_in_this_hour?
           carry_hour
         when !scheduled_in_this_minute?
@@ -71,7 +71,7 @@ module Chrono
     end
 
     def carry_day
-      self.time = time.next_day.at_beginning_of_day
+      self.time = time.tomorrow.at_beginning_of_day
     end
 
     def carry_wday
