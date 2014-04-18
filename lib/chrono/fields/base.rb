@@ -8,7 +8,11 @@ module Chrono
       end
 
       def to_a
-        lower.step(upper, step).to_a
+        if has_multiple_elements?
+          fields.map(&:to_a).flatten.uniq.sort
+        else
+          lower.step(upper, step).to_a.sort
+        end
       end
 
       private
@@ -47,6 +51,18 @@ module Chrono
 
       def match_data
         @match_data ||= interpolated.match(pattern)
+      end
+
+      def elements
+        @elements ||= source.split(",")
+      end
+
+      def has_multiple_elements?
+        elements.size >= 2
+      end
+
+      def fields
+        elements.map {|element| self.class.new(element) }
       end
     end
   end
