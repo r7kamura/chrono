@@ -32,3 +32,16 @@ T T T T T
 | `------- hour --- 0 .. 23
 `--------- minute - 0 .. 59
 ```
+
+## Trigger
+Waits till scheduled time and then triggers a given job. `#run` is a periodic version of `#once`.
+
+```ruby
+# Trigger
+trigger = Chrono::Trigger.new("30 * * * *") { Time.now }
+trigger.once # 2000-01-01 00:30:00
+trigger.run  # 2000-01-01 01:30:00
+             # 2000-01-01 02:30:00
+             # 2000-01-01 03:30:00
+             # ...
+```
