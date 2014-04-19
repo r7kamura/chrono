@@ -2,7 +2,7 @@
 
 Provides a chain of logics about chronology.
 
-## Chrono::Iterator
+## Iterator
 Parse cron syntax and determine next scheduled run.
 
 ```ruby
@@ -10,8 +10,8 @@ require "chrono"
 
 iterator = Chrono::Iterator.new("30 * * * *")
 iterator.next #=> 2000-01-01 00:30:00
-iterator.next #=> 2000-01-02 00:30:00
-iterator.next #=> 2000-01-03 00:30:00
+iterator.next #=> 2000-01-01 01:30:00
+iterator.next #=> 2000-01-01 02:30:00
 ```
 
 The following syntax is supported.
