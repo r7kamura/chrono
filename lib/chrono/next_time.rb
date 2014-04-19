@@ -35,7 +35,7 @@ module Chrono
     private
 
     def time
-      @time ||= now + 1.minute
+      @time ||= (now + 1.minute).at_beginning_of_minute
     end
 
     def schedule
