@@ -1,3 +1,6 @@
+## 0.0.4
+Add extra 1sec sleep to adjust to exact minute
+
 ## 0.0.3
 * Schedule more accurate second
 
