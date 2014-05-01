@@ -31,7 +31,7 @@ module Chrono
     end
 
     def period
-      iterator.next - Time.now
+      iterator.next - Time.now + 1.second
     end
   end
 end
