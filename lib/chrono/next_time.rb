@@ -1,6 +1,13 @@
-require "active_support/core_ext/date"
-require "active_support/core_ext/time"
 require "active_support/core_ext/numeric/time"
+require "active_support/version"
+
+if ActiveSupport::VERSION::MAJOR >= 4
+  require "active_support/core_ext/date"
+  require "active_support/core_ext/time"
+else
+  require "active_support/core_ext/date/calculations"
+  require "active_support/core_ext/time/calculations"
+end
 
 module Chrono
   class NextTime
@@ -35,7 +42,7 @@ module Chrono
     private
 
     def time
-      @time ||= (now + 1.minute).at_beginning_of_minute
+      @time ||= (now + 1.minute).change(sec: 0)
     end
 
     def schedule
@@ -75,7 +82,7 @@ module Chrono
     end
 
     def carry_minute
-      self.time = (time + 1.minute).at_beginning_of_minute
+      self.time = (time + 1.minute).change(sec: 0)
     end
   end
 end
