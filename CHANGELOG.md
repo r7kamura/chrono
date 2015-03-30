@@ -1,3 +1,6 @@
+## 0.0.6
+- Support ActiveSupport 3 and 4
+
 ## 0.0.5
 - Fix missing version dependency on ActiveSupport 4
 
