@@ -37,7 +37,7 @@ for more details.
 ```
 * * * * *
 T T T T T
-| | | | `- wday --- 0 ..  6
+| | | | `- wday --- 0 ..  6 (0 = Sunday)
 | | | `--- month -- 1 .. 12
 | | `----- day ---- 1 .. 31
 | `------- hour --- 0 .. 23
