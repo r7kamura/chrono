@@ -1,6 +1,15 @@
 module Chrono
   module Fields
     class Base
+      class InvalidField < StandardError
+        attr_reader :source
+
+        def initialize(message, source)
+          super("#{message}: #{source}")
+          @source = source
+        end
+      end
+
       attr_reader :source
 
       def initialize(source)
@@ -11,7 +20,11 @@ module Chrono
         if has_multiple_elements?
           fields.map(&:to_a).flatten.uniq.sort
         else
-          lower.step(upper, step).to_a.sort
+          ary = lower.step(upper, step).to_a
+          if ary.empty?
+            raise InvalidField.new('The range is evaluated to empty', source)
+          end
+          ary.sort
         end
       end
 
