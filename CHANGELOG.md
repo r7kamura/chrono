@@ -1,3 +1,6 @@
+## 0.1.0
+- Raise errors on invalid fields (thx @eagletmt)
+
 ## 0.0.6
 - Support ActiveSupport 3 and 4
 
