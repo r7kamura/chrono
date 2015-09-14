@@ -32,6 +32,14 @@ describe Chrono::Iterator do
         expect { described_class.new('5-0 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
       end
 
+      it 'raises error when too large upper is given' do
+        expect { described_class.new('5-60 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+      end
+
+      it 'raises error when too low lower is given' do
+        expect { described_class.new('* * 0 * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+      end
+
       it 'raises error when unparsable field is given' do
         expect { described_class.new('a-z * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
       end

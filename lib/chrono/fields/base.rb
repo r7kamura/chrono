@@ -20,11 +20,7 @@ module Chrono
         if has_multiple_elements?
           fields.map(&:to_a).flatten.uniq.sort
         else
-          ary = lower.step(upper, step).to_a
-          if ary.empty?
-            raise InvalidField.new('The range is evaluated to empty', source)
-          end
-          ary.sort
+          from_range
         end
       end
 
@@ -32,6 +28,18 @@ module Chrono
 
       def interpolated
         source.gsub("*", "#{range.first}-#{range.last}")
+      end
+
+      def from_range
+        if lower < range.begin || range.end < upper
+          raise InvalidField.new('The field is out-of-range', source)
+        end
+
+        ary = lower.step(upper, step).to_a
+        if ary.empty?
+          raise InvalidField.new('The range is evaluated to empty', source)
+        end
+        ary.sort
       end
 
       def lower
