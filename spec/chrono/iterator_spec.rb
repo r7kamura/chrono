@@ -31,6 +31,10 @@ describe Chrono::Iterator do
       it 'raises error when empty range is given' do
         expect { described_class.new('5-0 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
       end
+
+      it 'raises error when unparsable field is given' do
+        expect { described_class.new('a-z * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+      end
     end
   end
 end

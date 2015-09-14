@@ -59,7 +59,11 @@ module Chrono
       end
 
       def match_data
-        @match_data ||= interpolated.match(pattern)
+        @match_data ||= interpolated.match(pattern).tap do |m|
+          unless m
+            raise InvalidField.new('Unparsable field', source)
+          end
+        end
       end
 
       def elements
