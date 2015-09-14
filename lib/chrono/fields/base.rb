@@ -1,6 +1,15 @@
 module Chrono
   module Fields
     class Base
+      class InvalidField < StandardError
+        attr_reader :source
+
+        def initialize(message, source)
+          super("#{message}: #{source}")
+          @source = source
+        end
+      end
+
       attr_reader :source
 
       def initialize(source)
@@ -11,6 +20,7 @@ module Chrono
         if has_multiple_elements?
           fields.map(&:to_a).flatten.uniq.sort
         else
+          validate!
           lower.step(upper, step).to_a.sort
         end
       end
@@ -19,6 +29,22 @@ module Chrono
 
       def interpolated
         source.gsub("*", "#{range.first}-#{range.last}")
+      end
+
+      def validate!
+        unless match_data
+          raise InvalidField.new('Unparsable field', source)
+        end
+
+        if lower < range.begin || range.end < upper
+          raise InvalidField.new('The field is out-of-range', source)
+        end
+
+        if upper < lower
+          raise InvalidField.new('The range is evaluated to empty', source)
+        end
+
+        true
       end
 
       def lower
