@@ -20,7 +20,8 @@ module Chrono
         if has_multiple_elements?
           fields.map(&:to_a).flatten.uniq.sort
         else
-          from_range
+          validate!
+          lower.step(upper, step).to_a.sort
         end
       end
 
@@ -30,16 +31,20 @@ module Chrono
         source.gsub("*", "#{range.first}-#{range.last}")
       end
 
-      def from_range
+      def validate!
+        unless match_data
+          raise InvalidField.new('Unparsable field', source)
+        end
+
         if lower < range.begin || range.end < upper
           raise InvalidField.new('The field is out-of-range', source)
         end
 
-        ary = lower.step(upper, step).to_a
-        if ary.empty?
+        if upper < lower
           raise InvalidField.new('The range is evaluated to empty', source)
         end
-        ary.sort
+
+        true
       end
 
       def lower
@@ -67,11 +72,7 @@ module Chrono
       end
 
       def match_data
-        @match_data ||= interpolated.match(pattern).tap do |m|
-          unless m
-            raise InvalidField.new('Unparsable field', source)
-          end
-        end
+        @match_data ||= interpolated.match(pattern)
       end
 
       def elements
