@@ -6,6 +6,7 @@ describe Chrono::Schedule do
   describe '.new' do
     subject { Chrono::Schedule.new('* * * * * *') }
     it { is_expected.to be_a(Chrono::Schedule) }
+    it { expect{subject.minutes}.to raise_error(Chrono::Fields::Base::InvalidField) }
   end
 
   describe '#minutes' do

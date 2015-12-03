@@ -29,7 +29,13 @@ module Chrono
     private
 
     def fields
-      @fields ||= source.split(" ")
+      unless @fields
+        @fields = source.split(" ")
+        if @fields.size != 5
+          raise Chrono::Fields::Base::InvalidField.new('must have 5 fields', source)
+        end
+      end
+      @fields
     end
   end
 end
