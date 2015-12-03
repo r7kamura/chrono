@@ -15,8 +15,8 @@ describe Chrono::Trigger do
 
   describe "#once" do
     it "waits till scheduled time and then triggers a given job only once" do
-      block.should_receive(:call)
-      trigger.should_receive(:sleep)
+      expect(block).to receive(:call)
+      expect(trigger).to receive(:sleep)
       trigger.once
     end
   end
@@ -24,7 +24,7 @@ describe Chrono::Trigger do
   # Stub Trigger#loop behavior to avoid blocking main process.
   describe "#run" do
     before do
-      trigger.stub(:loop) do |&block|
+      allow(trigger).to receive(:loop) do |&block|
         2.times do
           block.call
         end
@@ -32,8 +32,8 @@ describe Chrono::Trigger do
     end
 
     it "waits till scheduled time and then triggers a given job periodically" do
-      block.should_receive(:call).twice
-      trigger.should_receive(:sleep).twice
+      expect(block).to receive(:call).twice
+      expect(trigger).to receive(:sleep).twice
       trigger.run
     end
   end

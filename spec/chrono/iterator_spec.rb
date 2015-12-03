@@ -25,7 +25,7 @@ describe Chrono::Iterator do
     ].each_slice(3) do |from, to, source|
       it "ticks #{from} to #{to} by #{source}" do
         now = Time.parse(from)
-        described_class.new(source, now: now).next.should == Time.parse(to)
+        expect(described_class.new(source, now: now).next).to eq(Time.parse(to))
       end
 
       it 'raises error when empty range is given' do
