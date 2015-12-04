@@ -12,6 +12,66 @@ describe Chrono::Schedule do
       subject { Chrono::Schedule.new('* * * * * *') }
       it { expect{subject.minutes}.to raise_error(Chrono::Fields::Base::InvalidField) }
     end
+    context '@yearly' do
+      subject { Chrono::Schedule.new('@yearly') }
+      it do
+        expect(subject.minutes).to eq([0])
+        expect(subject.hours).to   eq([0])
+        expect(subject.days).to    eq([1])
+        expect(subject.months).to  eq([1])
+        expect(subject.wdays).to   eq(7.times.to_a)
+      end
+    end
+    context '@annually' do
+      subject { Chrono::Schedule.new('@annually') }
+      it do
+        expect(subject.minutes).to eq([0])
+        expect(subject.hours).to   eq([0])
+        expect(subject.days).to    eq([1])
+        expect(subject.months).to  eq([1])
+        expect(subject.wdays).to   eq(7.times.to_a)
+      end
+    end
+    context '@monthly' do
+      subject { Chrono::Schedule.new('@monthly') }
+      it do
+        expect(subject.minutes).to eq([0])
+        expect(subject.hours).to   eq([0])
+        expect(subject.days).to    eq([1])
+        expect(subject.months).to  eq((1..12).to_a)
+        expect(subject.wdays).to   eq(7.times.to_a)
+      end
+    end
+    context '@weekly' do
+      subject { Chrono::Schedule.new('@weekly') }
+      it do
+        expect(subject.minutes).to eq([0])
+        expect(subject.hours).to   eq([0])
+        expect(subject.days).to    eq((1..31).to_a)
+        expect(subject.months).to  eq((1..12).to_a)
+        expect(subject.wdays).to   eq([0])
+      end
+    end
+    context '@daily' do
+      subject { Chrono::Schedule.new('@daily') }
+      it do
+        expect(subject.minutes).to eq([0])
+        expect(subject.hours).to   eq([0])
+        expect(subject.days).to    eq((1..31).to_a)
+        expect(subject.months).to  eq((1..12).to_a)
+        expect(subject.wdays).to   eq(7.times.to_a)
+      end
+    end
+    context '@hourly' do
+      subject { Chrono::Schedule.new('@hourly') }
+      it do
+        expect(subject.minutes).to eq([0])
+        expect(subject.hours).to   eq(24.times.to_a)
+        expect(subject.days).to    eq((1..31).to_a)
+        expect(subject.months).to  eq((1..12).to_a)
+        expect(subject.wdays).to   eq(7.times.to_a)
+      end
+    end
   end
 
   describe '#minutes' do

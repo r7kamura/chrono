@@ -1,9 +1,18 @@
 module Chrono
   class Schedule
     attr_reader :source
+    TABLE = {
+      '@yearly'   => %w"0 0 1 1 *",
+      '@annually' => %w"0 0 1 1 *",
+      '@monthly'  => %w"0 0 1 * *",
+      '@weekly'   => %w"0 0 * * 0",
+      '@daily'    => %w"0 0 * * *",
+      '@hourly'   => %w"0 * * * *",
+    }
 
     def initialize(source)
-      unless %r<\A[ \t]*(?:(?<field>\S+)[ \t]+){4}\g<field>[ \t]*\z> =~ source
+      if @fields = TABLE[source]
+      elsif %r<\A[ \t]*(?:(?<field>\S+)[ \t]+){4}\g<field>[ \t]*\z> !~ source
         raise Chrono::Fields::Base::InvalidField.new('invalid source', source)
       end
       @source = source
