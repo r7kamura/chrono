@@ -4,9 +4,14 @@ describe Chrono::Schedule do
   let (:schedule) { Chrono::Schedule.new(source) }
 
   describe '.new' do
-    subject { Chrono::Schedule.new('* * * * * *') }
-    it { is_expected.to be_a(Chrono::Schedule) }
-    it { expect{subject.minutes}.to raise_error(Chrono::Fields::Base::InvalidField) }
+    context 'valid source' do
+      subject { Chrono::Schedule.new("\t*\t*\t*\t*\t*\t") }
+      it { is_expected.to be_a(Chrono::Schedule) }
+    end
+    context 'six fields' do
+      subject { Chrono::Schedule.new('* * * * * *') }
+      it { expect{subject.minutes}.to raise_error(Chrono::Fields::Base::InvalidField) }
+    end
   end
 
   describe '#minutes' do

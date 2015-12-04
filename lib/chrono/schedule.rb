@@ -3,6 +3,9 @@ module Chrono
     attr_reader :source
 
     def initialize(source)
+      unless %r<\A[ \t]*(?:(?<field>\S+)[ \t]+){4}\g<field>[ \t]*\z> =~ source
+        raise Chrono::Fields::Base::InvalidField.new('invalid source', source)
+      end
       @source = source
     end
 
@@ -29,13 +32,7 @@ module Chrono
     private
 
     def fields
-      unless @fields
-        @fields = source.split(" ")
-        if @fields.size != 5
-          raise Chrono::Fields::Base::InvalidField.new('must have 5 fields', source)
-        end
-      end
-      @fields
+      @fields ||= source.split(" ")
     end
   end
 end
