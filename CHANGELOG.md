@@ -1,3 +1,7 @@
+## 0.2.0
+- Add more strict validations
+- Support some alias field names
+
 ## 0.1.0
 - Raise errors on invalid fields (thx @eagletmt)
 
