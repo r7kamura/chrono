@@ -144,6 +144,70 @@ describe Chrono::Schedule do
       let (:source){ '0 0 13 0 *' }
       it { expect{subject}.to raise_error(Chrono::Fields::Base::InvalidField) }
     end
+    context 'month: Jan' do
+      let (:source){ '0 0 1 Jan 0' }
+      it { is_expected.to eq [1] }
+    end
+    context 'month: Feb' do
+      let (:source){ '0 0 1 Feb 0' }
+      it { is_expected.to eq [2] }
+    end
+    context 'month: Mar' do
+      let (:source){ '0 0 1 Mar 0' }
+      it { is_expected.to eq [3] }
+    end
+    context 'month: Apr' do
+      let (:source){ '0 0 1 Apr 0' }
+      it { is_expected.to eq [4] }
+    end
+    context 'month: May' do
+      let (:source){ '0 0 1 May 0' }
+      it { is_expected.to eq [5] }
+    end
+    context 'month: Jun' do
+      let (:source){ '0 0 1 Jun 0' }
+      it { is_expected.to eq [6] }
+    end
+    context 'month: Jul' do
+      let (:source){ '0 0 1 Jul 0' }
+      it { is_expected.to eq [7] }
+    end
+    context 'month: Aug' do
+      let (:source){ '0 0 1 Aug 0' }
+      it { is_expected.to eq [8] }
+    end
+    context 'month: Sep' do
+      let (:source){ '0 0 1 Sep 0' }
+      it { is_expected.to eq [9] }
+    end
+    context 'month: Oct' do
+      let (:source){ '0 0 1 Oct 0' }
+      it { is_expected.to eq [10] }
+    end
+    context 'month: Nov' do
+      let (:source){ '0 0 1 Nov 0' }
+      it { is_expected.to eq [11] }
+    end
+    context 'month: Dec' do
+      let (:source){ '0 0 1 Dec 0' }
+      it { is_expected.to eq [12] }
+    end
+    context 'month: Mar-Dec/3' do
+      let (:source){ '0 0 1 Mar-Dec/3 0' }
+      it { is_expected.to eq [3,6,9,12] }
+    end
+    context 'month: Mar,Jun,Sep,Dec' do
+      let (:source){ '0 0 1 Mar,Jun,Sep,Dec/3 0' }
+      it { is_expected.to eq [3,6,9,12] }
+    end
+    context 'month: January' do
+      let (:source){ '0 0 1 January 0' }
+      it { expect{subject}.to raise_error(Chrono::Fields::Base::InvalidField) }
+    end
+    context 'month: Abc' do
+      let (:source){ '0 0 1 Abc 0' }
+      it { expect{subject}.to raise_error(Chrono::Fields::Base::InvalidField) }
+    end
   end
 
   describe '#wdays' do
@@ -158,11 +222,47 @@ describe Chrono::Schedule do
     end
     context 'wdays: 7' do
       let (:source){ '0 0 * * 7' }
-      it { expect{subject}.to raise_error(Chrono::Fields::Base::InvalidField) }
+      it { is_expected.to eq [0] }
     end
     context 'wdays: 8' do
       let (:source){ '0 0 * * 8' }
       it { expect{subject}.to raise_error(Chrono::Fields::Base::InvalidField) }
+    end
+    context 'wdays: sun' do
+      let (:source){ '0 0 * * sun' }
+      it { is_expected.to eq [0] }
+    end
+    context 'wdays: mon' do
+      let (:source){ '0 0 * * mon' }
+      it { is_expected.to eq [1] }
+    end
+    context 'wdays: tue' do
+      let (:source){ '0 0 * * tue' }
+      it { is_expected.to eq [2] }
+    end
+    context 'wdays: wed' do
+      let (:source){ '0 0 * * wed' }
+      it { is_expected.to eq [3] }
+    end
+    context 'wdays: Thu' do
+      let (:source){ '0 0 * * Thu' }
+      it { is_expected.to eq [4] }
+    end
+    context 'wdays: FRI' do
+      let (:source){ '0 0 * * FRI' }
+      it { is_expected.to eq [5] }
+    end
+    context 'wdays: Sat' do
+      let (:source){ '0 0 * * Sat' }
+      it { is_expected.to eq [6] }
+    end
+    context 'wdays: Sun-Sat' do
+      let (:source){ '0 0 * * Sun-Sat' }
+      it { is_expected.to eq [0,1,2,3,4,5,6] }
+    end
+    context 'wdays: Sun,Sat' do
+      let (:source){ '0 0 * * Sun,Sat' }
+      it { is_expected.to eq [0,6] }
     end
   end
 end
