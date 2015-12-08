@@ -23,7 +23,7 @@ module Chrono
       private
 
       def interpolated
-        super.downcase.gsub(/7|sun|mon|tue|wed|thu|fri|sat/){TABLE[$&]}
+        super.downcase.gsub(/7|sun|mon|tue|wed|thu|fri|sat/, TABLE)
       end
 
       def range
