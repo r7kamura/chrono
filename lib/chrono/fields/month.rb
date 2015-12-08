@@ -27,7 +27,7 @@ module Chrono
       private
 
       def interpolated
-        super.downcase.gsub(/jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/){TABLE[$&]}
+        super.downcase.gsub(/jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/, TABLE)
       end
 
       def range
