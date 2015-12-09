@@ -27,8 +27,6 @@ module Chrono
           carry_month
         when !scheduled_in_this_day?
           carry_day
-        when !scheduled_in_this_wday?
-          carry_day
         when !scheduled_in_this_hour?
           carry_hour
         when !scheduled_in_this_minute?
@@ -54,11 +52,19 @@ module Chrono
     end
 
     def scheduled_in_this_day?
-      schedule.days.include?(time.day)
-    end
-
-    def scheduled_in_this_wday?
-      schedule.wdays.include?(time.wday)
+      if schedule.days?
+        if schedule.wdays?
+          schedule.days.include?(time.day) || schedule.wdays.include?(time.wday)
+        else
+          schedule.days.include?(time.day)
+        end
+      else
+        if schedule.wdays?
+          schedule.wdays.include?(time.wday)
+        else
+          true
+        end
+      end
     end
 
     def scheduled_in_this_hour?
