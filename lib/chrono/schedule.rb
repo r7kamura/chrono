@@ -38,6 +38,14 @@ module Chrono
       Fields::Wday.new(fields[4]).to_a
     end
 
+    def days?
+      fields[2] != '*'
+    end
+
+    def wdays?
+      fields[4] != '*'
+    end
+
     private
 
     def fields
