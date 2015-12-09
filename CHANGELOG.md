@@ -1,3 +1,6 @@
+## 0.3.0
+- Fix bug on day and wday specs
+
 ## 0.2.0
 - Add more strict validations
 - Support some alias field names
