@@ -21,7 +21,10 @@ module Chrono
     end
 
     def to_time
-      loop do
+      # the longest cycle is 4 years (leap year)
+      # Note that the combination of day-month and wday is OR
+      max_time = time + (365 * 3 + 366).days
+      while @time < max_time
         case
         when !scheduled_in_this_month?
           carry_month
@@ -32,9 +35,10 @@ module Chrono
         when !scheduled_in_this_minute?
           carry_minute
         else
-          break time
+          return @time
         end
       end
+      raise ArgumentError, "invalid cron string '#{@source}'"
     end
 
     private

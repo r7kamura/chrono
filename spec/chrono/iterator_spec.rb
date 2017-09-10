@@ -24,27 +24,32 @@ describe Chrono::Iterator do
       "2000-01-01 00:20:00", "2000-01-01 01:01:00", "1-20/3 * * * *",
       "2000-01-01 00:00:00", "2000-01-03 00:00:00", "0 0 1,15 * 1",
       "2000-01-01 00:00:00", "2000-01-05 00:00:00", "0 0 5,15,25 * 5",
+      "2000-02-29 00:00:01", "2004-02-29 00:00:00", "0 0 29 2 *",
     ].each_slice(3) do |from, to, source|
       it "ticks #{from} to #{to} by #{source}" do
         now = Time.parse(from)
         expect(described_class.new(source, now: now).next).to eq(Time.parse(to))
       end
+    end
 
-      it 'raises error when empty range is given' do
-        expect { described_class.new('5-0 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
-      end
+    it 'raises error when empty range is given' do
+      expect { described_class.new('5-0 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+    end
 
-      it 'raises error when too large upper is given' do
-        expect { described_class.new('5-60 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
-      end
+    it 'raises error when too large upper is given' do
+      expect { described_class.new('5-60 * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+    end
 
-      it 'raises error when too low lower is given' do
-        expect { described_class.new('* * 0 * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
-      end
+    it 'raises error when too low lower is given' do
+      expect { described_class.new('* * 0 * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+    end
 
-      it 'raises error when unparsable field is given' do
-        expect { described_class.new('a-z * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
-      end
+    it 'raises error when unparsable field is given' do
+      expect { described_class.new('a-z * * * *').next }.to raise_error(Chrono::Fields::Base::InvalidField)
+    end
+
+    it 'raises error when unparsable field is given' do
+      expect { described_class.new('* * 31 11 *').next }.to raise_error(ArgumentError)
     end
   end
 end
