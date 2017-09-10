@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Raise ArgumentError on inifinite loop detected (thx @nurse)
+
 ## 0.3.0
 - Fix bug on day and wday specs
 
