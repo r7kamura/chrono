@@ -1,13 +1,5 @@
+require "active_support"
 require "active_support/core_ext/numeric/time"
-require "active_support/version"
-
-if ActiveSupport::VERSION::MAJOR >= 4
-  require "active_support/core_ext/date"
-  require "active_support/core_ext/time"
-else
-  require "active_support/core_ext/date/calculations"
-  require "active_support/core_ext/time/calculations"
-end
 
 module Chrono
   class NextTime
