@@ -1,5 +1,7 @@
 # Chrono
 
+[![test](https://github.com/r7kamura/chrono/actions/workflows/test.yml/badge.svg)](https://github.com/r7kamura/chrono/actions/workflows/test.yml)
+
 Provides a chain of logics about chronology.
 
 ## Trigger
