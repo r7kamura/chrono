@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.5.0
+
 ### Added
 
 - Add support for activesupport 7 (thx @unasuke).
