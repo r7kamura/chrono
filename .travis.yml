@@ -1,9 +1,0 @@
-rvm:
-  - 1.9.3
-  - 2.0.0
-branches:
-  only:
-    - master
-env:
-  global:
-    secure: bzOuKK2sEcdWchOeiS5VgKIj8R6ZFZLtmlJ3aENdYAXcrrVW+1XKAGQlT3NxH5G2EloV8nNPOX8oNXbYjs81AvEEdjZGRMYUnC59GbvtL+2zQgG77yq5xI/UXypuBQIzUBhzrwFMImSAltKsdlbsrVUtl7x8Arg1HajcMbEsg9Y=
