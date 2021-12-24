@@ -1,6 +1,7 @@
 # Chrono
 
 [![test](https://github.com/r7kamura/chrono/actions/workflows/test.yml/badge.svg)](https://github.com/r7kamura/chrono/actions/workflows/test.yml)
+[![Gem Version](https://badge.fury.io/rb/chrono.svg)](https://rubygems.org/gems/chrono)
 
 Provides a chain of logics about chronology.
 
