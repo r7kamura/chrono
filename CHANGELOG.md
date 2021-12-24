@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add support for activesupport 7 (thx @unasuke).
+
+### Changed
+
+- Drop support of activesupport below 5.2.
+
 ## 0.4.0
 
 ### Changed
