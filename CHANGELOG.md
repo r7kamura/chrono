@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+
+- Add last-day-of-month syntax (thx @itkrt2y).
+
 ## 0.5.0
 
 ### Added
