@@ -124,6 +124,10 @@ describe Chrono::Schedule do
       let (:source){ '0 0 32 * *' }
       it { expect{subject}.to raise_error(Chrono::Fields::Base::InvalidField) }
     end
+    context 'last day of the month' do
+      let (:source){ '0 0 L * *' }
+      it { is_expected.to eq [] }
+    end
   end
 
   describe '#months' do

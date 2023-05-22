@@ -46,6 +46,10 @@ module Chrono
       fields[4] != '*'
     end
 
+    def last_day_of_month?
+      fields[2] == 'L'
+    end
+
     private
 
     def fields
