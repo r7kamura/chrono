@@ -6,6 +6,10 @@ module Chrono
       def range
         1..31
       end
+
+      def wildcards
+        ['L']
+      end
     end
   end
 end

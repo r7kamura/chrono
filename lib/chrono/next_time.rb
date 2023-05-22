@@ -48,7 +48,9 @@ module Chrono
     end
 
     def scheduled_in_this_day?
-      if schedule.days?
+      if schedule.last_day_of_month?
+        time.day == time.end_of_month.day
+      elsif schedule.days?
         if schedule.wdays?
           schedule.days.include?(time.day) || schedule.wdays.include?(time.wday)
         else

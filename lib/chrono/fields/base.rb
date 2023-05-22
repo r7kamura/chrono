@@ -21,7 +21,7 @@ module Chrono
           fields.map(&:to_a).flatten.uniq.sort
         else
           validate!
-          lower.step(upper, step).to_a.sort
+          wildcard? ? [] : lower.step(upper, step).to_a.sort
         end
       end
 
@@ -31,10 +31,20 @@ module Chrono
         source.gsub("*", "#{range.first}-#{range.last}")
       end
 
+      def wildcards
+        []
+      end
+
+      def wildcard?
+        wildcards.include?(source)
+      end
+
       def validate!
         unless match_data
           raise InvalidField.new('Unparsable field', source)
         end
+
+        return true if wildcard?
 
         if lower < range.begin || range.end < upper
           raise InvalidField.new('The field is out-of-range', source)
@@ -68,7 +78,11 @@ module Chrono
       end
 
       def pattern
-        %r<\A(\d+)(?:-(\d+))?(?:/(\d+))?\z>
+        ptn = %r<\A(\d+)(?:-(\d+))?(?:/(\d+))?\z>
+        if wildcards.any?
+          ptn = Regexp.union(ptn, *wildcards.map { |w| /\A#{w}\z/ })
+        end
+        ptn
       end
 
       def match_data
