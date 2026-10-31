@@ -1,8 +1,5 @@
 # Chrono
 
-[![test](https://github.com/r7kamura/chrono/actions/workflows/test.yml/badge.svg)](https://github.com/r7kamura/chrono/actions/workflows/test.yml)
-[![Gem Version](https://badge.fury.io/rb/chrono.svg)](https://rubygems.org/gems/chrono)
-
 Provides a chain of logics about chronology.
 
 ## Trigger
@@ -29,7 +26,7 @@ iterator.next #=> 2000-01-01 02:30:00
 
 ## Syntax
 The following syntax is supported.
-See the [examples](https://github.com/r7kamura/chrono/blob/master/spec/chrono/iterator_spec.rb)
+See the [examples](https://github.com/r7kamura/chrono/blob/main/spec/chrono/iterator_spec.rb)
 for more details.
 
 * (*) Asterisk
