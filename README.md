@@ -29,7 +29,7 @@ iterator.next #=> 2000-01-01 02:30:00
 
 ## Syntax
 The following syntax is supported.
-See the [examples](https://github.com/r7kamura/chrono/blob/master/spec/chrono/iterator_spec.rb)
+See the [examples](https://github.com/r7kamura/chrono/blob/main/spec/chrono/iterator_spec.rb)
 for more details.
 
 * (*) Asterisk
